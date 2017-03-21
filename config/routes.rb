@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'welcome#home'
+
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
 
@@ -8,7 +10,7 @@ Rails.application.routes.draw do
       only: [:create, :edit, :update]
   end
 
-  
+
 
 
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
