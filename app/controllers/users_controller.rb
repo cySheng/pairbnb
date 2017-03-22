@@ -18,7 +18,7 @@ class UsersController < Clearance::UsersController
 			flash[:notice] = "User info successfully updated!"
 			redirect_to "/"
 		else
-			flash[:notice] = current_user.errors.messages
+			flash[:error] = current_user.errors.messages
 			redirect_to edit_user_path(current_user)
 		end
 	end

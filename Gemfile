@@ -24,6 +24,7 @@ gem 'clearance'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'figaro'
+gem 'acts-as-taggable-on', '~> 4.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

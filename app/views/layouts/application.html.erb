@@ -9,6 +9,7 @@
     <% if signed_in? -%>
       <%= link_to t(".create_listing"), new_listing_path %>
       <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
+      <%= link_to t(".my_profile"), user_path(current_user) %>
     <% else -%>
       <%= link_to t(".sign_in"), sign_in_path %>
       <%= link_to "Connect With Facebook", "/auth/facebook" %>
