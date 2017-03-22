@@ -13,8 +13,14 @@ class UsersController < Clearance::UsersController
 	end
 
 	def update
-		current_user.update(user_params)
-		redirect_to "/"
+		byebug
+		if current_user.update(user_params)
+			flash[:notice] = "User info successfully updated!"
+			redirect_to "/"
+		else
+			flash[:notice] = current_user.errors.messages
+			redirect_to edit_user_path(current_user)
+		end
 	end
 
 	private

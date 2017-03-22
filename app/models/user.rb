@@ -3,7 +3,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validates :phone_number, presence: true, numericality: true, on: :update
   validates :government_id, presence: true, numericality: true, on: :update
-  validates :birthday, presence: true, numericality: true, on: :update
+  validates :birthday, presence: true, on: :update
   validates :autobiography, presence: true, on: :update
   validates :location, presence: true, on: :update
   validates :last_name, presence: true, on: :update
