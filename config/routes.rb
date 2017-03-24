@@ -15,7 +15,11 @@ Rails.application.routes.draw do
 
   #get 'users/show'
 
-  resources :listings
+  resources :listings do 
+    resources :tags, only: [:index, :show]
+  end
+
+  #get ""
 
   root 'welcome#home'
 

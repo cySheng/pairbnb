@@ -25,6 +25,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'figaro'
 gem 'acts-as-taggable-on', '~> 4.0'
+gem 'simple_form'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

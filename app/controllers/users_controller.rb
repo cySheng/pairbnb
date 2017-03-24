@@ -12,8 +12,35 @@ class UsersController < Clearance::UsersController
 		@user = User.find(current_user.id)
 	end
 
+	def create
+		@user = User.new(user_params)
+		respond_to do |format|
+			if @user.save
+				format.html {
+					flash[:notice] = "You successfully signed up!"
+					sign_in(@user)
+					redirect to "/"
+				}
+			else
+				format.html {
+					flash[:error] = "There was an error signing you up!"
+					redirect_to sign_up_path
+				}
+				format.js
+			end
+		end
+
+		# if @user.save
+		# 	flash[:notice] = "You successfully signed up!"
+		# 	sign_in(@user)
+		# 	redirect to "/"
+		# else
+		# 	flash[:error] = "There was an error signing you up!"
+		# 	redirect_to sign_up_path
+		# end
+	end
+
 	def update
-		byebug
 		if current_user.update(user_params)
 			flash[:notice] = "User info successfully updated!"
 			redirect_to "/"

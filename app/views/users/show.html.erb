@@ -1,2 +1,7 @@
 <h2>My Profile</h2>
 <%= link_to t(".edit_profile"), edit_user_path %>
+
+<h4> My Listings</h4>
+<% current_user.listings.each do |x| %>
+	<%= link_to (x.name), edit_listing_path(x) %>
+<% end %>

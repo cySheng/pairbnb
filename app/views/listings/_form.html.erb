@@ -63,3 +63,8 @@
   <%= form.text_field :date_end, type: 'date' %>
 </div>
 
+<div class="text-field">
+  <%= form.label :category_list %>
+  <%= form.text_field :category_list, value: form.object.category_list.to_s, type: 'text' %>
+</div>
+
