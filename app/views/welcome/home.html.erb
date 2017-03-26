@@ -2,7 +2,7 @@
 
 <input type="text" data-provide='datepicker' > <br>
 <% @listing.each do |x| %>
-	Name = <%= x.name %> <br>
+	Name = <%= link_to (x.name), listing_path(x) %> <br>
 	<%= x.description %> <br> 
 	<%= x.price %> <br> 
 	<%= x.street + x.city %> <br>
