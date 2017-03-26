@@ -8,9 +8,10 @@ class CreateListings < ActiveRecord::Migration[5.0]
     	t.string :number_of_guests, null: false
     	t.string :number_of_bedrooms, null: false
     	t.string :number_of_bathrooms, null: false
-    	t.string :street_location, null: false
-    	t.string :city_location, null: false
-    	t.string :country_location, null: false
+    	t.string :street, null: false
+    	t.string :city, null: false
+        t.string :state, null: false
+    	t.string :country, null: false
     	t.string :price, null: false
     	t.string :date_start, null: false
     	t.string :date_end, null: false

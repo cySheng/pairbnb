@@ -21,10 +21,9 @@
       <%= link_to t(".my_profile"), user_path(current_user) %>
       <%= link_to t(".create_listing"), new_listing_path %>
       <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
-      <%= form_tag("/search", method: "get") do %>
-        <%= label_tag(:q, "Search for:") %>
-        <%= text_field_tag(:q) %>
-        <%= submit_tag("Search") %>
+      <%= form_tag(listings_path, :method => "get", id: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search Listings" %>
+        <%= submit_tag "Search", :name => nil %>
       <% end %>
     <% else -%>
       <%= link_to t(".sign_in"), sign_in_path %>

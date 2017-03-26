@@ -3,12 +3,30 @@ class ListingsController < ApplicationController
 		@listing = Listing.new
 	end
 
+	def index
+		if params[:@number]
+			@number = params[:@number]
+		else
+			@number ||= 0 unless @number
+		end
+
+		if params[:@number]
+			@listings = Listing.order(:id).limit(10).offset(params[:@number])
+		else
+  		@listings = Listing.order(:id).limit(10).offset(@number)
+  	end
+
+	  if params[:search]
+	    @listings = Listing.search(params[:search]).order("created_at DESC")
+	  end
+	end
+
 	def create
 		@listing = current_user.listings.new(listing_params)
 		# @listing = Listing.new(listing_params)
 		# @listing.user_id = current_user.id
 		respond_to do |format|
-			if @listing.save 
+			if @listing.save
 				format.html {
 					flash[:notice] = "Listing is created!"
 					redirect_to root_path
