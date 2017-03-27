@@ -1,4 +1,5 @@
 <h2><%=@listing.name%></h2>
+Verification: <%= @listing.verification %> <br>
 
 
 Description : <%= @listing.description %> <br>
@@ -15,3 +16,9 @@ Price: <%= @listing.price %> <br>
 <%= @listing.date_end %> <br>
 
 Host's Name = <%= @listing.user.first_name %> 
+
+
+<% unless current_user.customer? %>
+	<%= button_to ("Verify Listing"), listing_path, :method => "put", params: {'verification' => true} %>
+<% end %>
+

@@ -1,6 +1,11 @@
 class ListingsController < ApplicationController
 	def new
-		@listing = Listing.new
+		if current_user.customer
+			@listing = Listing.new
+		else
+			flash[:error] = "You are not a customer of Airbnb"
+			redirect_back(fallback_location: root_path)
+		end
 	end
 
 	def index
@@ -43,12 +48,25 @@ class ListingsController < ApplicationController
 
 	def update 
 		listing = Listing.find(params[:id])
-		if listing.update(listing_params)
-			flash[:notice] = "Listing is successfully updated!"
-			redirect_to root_path
+		if params[:verification] 
+			if allowed?(action: "verify", user: current_user)
+				if listing.update(verification: true)
+					flash[:notice] = "Listing verified"
+				else
+					flash[:error] = "There was an error verifying your property."
+				end
+			else
+				flash[:notice] = "You do not have permission"
+			end
+			redirect_back(fallback_location: root_path)
 		else
-			flash[:notice] = "There was an error updating your listing"
-			redirect_to user_path
+			if listing.update(listing_params)
+				flash[:notice] = "Listing is successfully updated!"
+				redirect_to root_path
+			else
+				flash[:notice] = "There was an error updating your listing"
+				redirect_to user_path
+			end
 		end
 	end
 
@@ -58,11 +76,12 @@ class ListingsController < ApplicationController
 
 	def destroy 
 		listing = Listing.find(params[:id])
+
 		if listing.destroy
 			flash[:notice] = "Listing destroyed"
 			redirect_to root_path
 		else
-			flash[:notice] = "Listing can't be destroyed"
+			flash[:error] = "Listing can't be destroyed"
 			redirect_to user_path
 		end
 	end
@@ -74,6 +93,6 @@ class ListingsController < ApplicationController
 
 	private
 	def listing_params
-		params.require(:listing).permit(:tag_list, :name, :description, :house_rules, :number_of_beds, :number_of_guests, :number_of_bedrooms, :number_of_bathrooms, :street_location, :city_location, :country_location, :price, :date_start, :date_end, :category_list)
+		params.require(:listing).permit(:verification, :tag_list, :name, :description, :house_rules, :number_of_beds, :number_of_guests, :number_of_bedrooms, :number_of_bathrooms, :street_location, :city_location, :country_location, :price, :date_start, :date_end, :category_list)
 	end
 end

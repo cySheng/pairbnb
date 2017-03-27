@@ -12,4 +12,5 @@ class Listing < ApplicationRecord
   	where("name LIKE ? OR description LIKE ? OR city_location LIKE ?", "%#{search.capitalize}%", "%#{search.capitalize}%", "%#{search.capitalize}%") 
 	end
 	
+
 end
