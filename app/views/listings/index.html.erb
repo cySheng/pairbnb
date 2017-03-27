@@ -1,0 +1,16 @@
+<h2>Listings:</h2>
+<% @listings.each do |x| %>
+	Name = <%= link_to (x.name), listing_path(x) %> <br>
+	<%= x.description %> <br> 
+	<%= x.price %> <br> 
+	<%= x.street + x.city %> <br>
+<% end %>
+
+
+<% if Listing.all[0] != @listings[0] %>
+	<%= button_to ("Previous"), listings_path, params: {'@number' => (@number.to_i - 10)}, method: :get %>
+<% end %>
+
+<% if Listing.last != @listings.last %>
+	<%= button_to ("Next"), listings_path, params: {'@number' => (@number.to_i + 10)}, method: :get %>
+<% end %>

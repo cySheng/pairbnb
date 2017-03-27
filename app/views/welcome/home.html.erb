@@ -1,7 +1,9 @@
 <h2>Listings:</h2>
+
+<input type="text" data-provide='datepicker' > <br>
 <% @listing.each do |x| %>
-	<%= x.name %> <br>
+	Name = <%= link_to (x.name), listing_path(x) %> <br>
 	<%= x.description %> <br> 
 	<%= x.price %> <br> 
-	<%= x.street_location + x.city_location %> <br>
+	<%= x.street + x.city %> <br>
 <% end %>

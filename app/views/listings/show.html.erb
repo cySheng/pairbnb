@@ -1,0 +1,24 @@
+<h2><%=@listing.name%></h2>
+Verification: <%= @listing.verification %> <br>
+
+
+Description : <%= @listing.description %> <br>
+House Rules : <%= @listing.house_rules %> <br>
+Number of Beds: <%= @listing.number_of_beds %> <br>
+Number of Guests: <%= @listing.number_of_guests %> <br>
+Number of Bedrooms: <%= @listing.number_of_bedrooms %> <br>
+Street name: <%= @listing.street %> <br>
+City: <%= @listing.city %> <br>
+State: <%= @listing.state %> <br>
+Country: <%= @listing.country %> <br>
+Price: <%= @listing.price %> <br>
+<%= @listing.date_start %> <br>
+<%= @listing.date_end %> <br>
+
+Host's Name = <%= @listing.user.first_name %> 
+
+
+<% unless current_user.customer? %>
+	<%= button_to ("Verify Listing"), listing_path, :method => "put", params: {'verification' => true} %>
+<% end %>
+

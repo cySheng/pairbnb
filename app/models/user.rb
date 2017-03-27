@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   include Clearance::User
-  validates :email, uniqueness: true
+  validates :email, uniqueness: true, presence: true
   validates :phone_number, presence: true, numericality: true, on: :update
   validates :government_id, presence: true, numericality: true, on: :update
   validates :birthday, presence: true, on: :update
@@ -12,6 +12,11 @@ class User < ApplicationRecord
   validates :password, presence: true,on: create
 
   has_many :authentications, :dependent => :destroy
+  has_many :listings, :dependent => :destroy
+  has_many :reviews
+  has_many :bookings
+
+  enum status: [:admin, :moderator, :customer]
 
    def self.create_with_auth_and_hash(authentication,auth_hash)
     create! do |u|
@@ -38,7 +43,5 @@ class User < ApplicationRecord
   #   true
   # end
   
-  has_many :listings
-  has_many :reviews
-  has_many :bookings
+  
 end
