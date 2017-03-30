@@ -22,3 +22,20 @@ Host's Name = <%= @listing.user.first_name %>
 	<%= button_to ("Verify Listing"), listing_path, :method => "put", params: {'verification' => true} %>
 <% end %>
 
+<div class="row">
+	<div class="col-md-2">
+	</div>
+	<div class="col-md-4">
+		<h3>Make a Reservation</h3>
+			<%= form_for @booking do |form| %>
+				<%= render partial: '/bookings/form', object: form %>
+
+				<div class="submit-field">
+				<%= form.submit %>
+				</div>
+			<% end %>
+	</div>
+</div>
+<br>
+
+

@@ -34,18 +34,23 @@
 </div>
 
 <div class="text-field">
-  <%= form.label :street_location %>
-  <%= form.text_field :street_location, type: 'text' %>
+  <%= form.label :street %>
+  <%= form.text_field :street, type: 'text' %>
 </div>
 
 <div class="text-field">
-  <%= form.label :city_location %>
-  <%= form.text_field :city_location, type: 'text' %>
+  <%= form.label :city %>
+  <%= form.text_field :city, type: 'text' %>
 </div>
 
 <div class="text-field">
-  <%= form.label :country_location %>
-  <%= form.text_field :country_location, type: 'text' %>
+  <%= form.label :state %>
+  <%= form.text_field :state, type: 'text' %>
+</div>
+
+<div class="text-field">
+  <%= form.label :country %>
+  <%= form.text_field :country, type: 'text' %>
 </div>
 
 <div class="text-field">
@@ -61,6 +66,11 @@
 <div class="text-field">
   <%= form.label :date_end %>
   <%= form.text_field :date_end, type: 'date' %>
+</div>
+
+
+<div class="text-field">
+  <%= form.file_field :photos, multiple: true %>
 </div>
 
 <div class="text-field">

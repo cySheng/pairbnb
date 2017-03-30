@@ -30,14 +30,6 @@ class UsersController < Clearance::UsersController
 			end
 		end
 
-		# if @user.save
-		# 	flash[:notice] = "You successfully signed up!"
-		# 	sign_in(@user)
-		# 	redirect to "/"
-		# else
-		# 	flash[:error] = "There was an error signing you up!"
-		# 	redirect_to sign_up_path
-		# end
 	end
 
 	def update
@@ -52,6 +44,6 @@ class UsersController < Clearance::UsersController
 
 	private
 	def user_params
-		params.require(:user).permit(:email, :last_name, :first_name, :phone_number, :government_id, :location, :gender, :birthday, :autobiography, :password)
+		params.require(:user).permit(:avatar, :email, :last_name, :first_name, :phone_number, :government_id, :location, :gender, :birthday, :autobiography, :password)
 	end
 end
