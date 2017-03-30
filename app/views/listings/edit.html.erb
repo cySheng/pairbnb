@@ -1,7 +1,7 @@
 <div id="clearance" class="create-listing">
   <h2><%= t(".title") %></h2>
 
-  <%= simple_form_for @listing do |form| %>
+  <%= simple_form_for @listing,  authenticity_token: true do |form| %>
     <%= render partial: '/listings/form', object: form %>
 
     <div class="submit-field">

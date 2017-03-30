@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   include Clearance::User
   validates :email, uniqueness: true, presence: true
-  validates :phone_number, presence: true, numericality: true, on: :update
+  validates :phone_number, presence: true, on: :update
   validates :government_id, presence: true, numericality: true, on: :update
   validates :birthday, presence: true, on: :update
   validates :autobiography, presence: true, on: :update
@@ -10,6 +10,7 @@ class User < ApplicationRecord
   validates :first_name, presence: true, on: :update
   validates :gender, presence: true, on: :update
   validates :password, presence: true,on: create
+  mount_uploader :avatar, AvatarUploader
 
   has_many :authentications, :dependent => :destroy
   has_many :listings, :dependent => :destroy

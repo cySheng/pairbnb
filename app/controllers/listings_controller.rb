@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
 	def new
-		if current_user.customer
+		if current_user.customer?
 			@listing = Listing.new
 		else
 			flash[:error] = "You are not a customer of Airbnb"
@@ -23,6 +23,10 @@ class ListingsController < ApplicationController
 
 	  if params[:search]
 	    @listings = Listing.search(params[:search]).order("created_at DESC")
+	  end
+
+	  if params[:location]
+	  	@listings = Listing.look(params[:location],params[:start_date],params[:end_date],params[:pax]).order("created_at DESC")
 	  end
 	end
 
@@ -88,11 +92,12 @@ class ListingsController < ApplicationController
 
 	def show
 		@listing = Listing.find(params[:id])
+		@booking = Booking.new
 	end
 
 
 	private
 	def listing_params
-		params.require(:listing).permit(:verification, :tag_list, :name, :description, :house_rules, :number_of_beds, :number_of_guests, :number_of_bedrooms, :number_of_bathrooms, :street_location, :city_location, :country_location, :price, :date_start, :date_end, :category_list)
+		params.require(:listing).permit({photos: []},:verification, :tag_list, :name, :description, :house_rules, :number_of_beds, :number_of_guests, :number_of_bedrooms, :number_of_bathrooms, :street, :city, :country, :price, :state, :date_start, :date_end, :category_list)
 	end
 end

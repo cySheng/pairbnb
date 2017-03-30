@@ -28,6 +28,9 @@ gem 'acts-as-taggable-on', '~> 4.0'
 gem 'simple_form'
 gem 'bootstrap-datepicker-rails'
 gem 'faker'
+gem 'carrierwave', '~> 1.0'
+gem "mini_magick"
+gem 'braintree'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
