@@ -2,12 +2,30 @@ class BookingsController < ApplicationController
 	def create
 		@booking = current_user.bookings.new(booking_params)
 		@booking.listing_id = params[:listing_id]
-		if @booking.save && !(@booking.check_overlapping_dates)
-			flash[:notice] = "Your bookings have been saved!"
-			redirect_to user_path(current_user)
+		byebug
+		if @booking.check_overlapping_dates
+			if @booking.save
+				ReservationMailer.booking_email(current_user, User.find(Listing.find(@booking.listing_id).user_id), @booking.listing_id).deliver
+				flash[:notice] = "Your bookings have been saved!"
+				redirect_to user_path(current_user)
+			else
+				flash[:error] = "There was an error with your booking!"
+				redirect_back(fallback_location: listings_path)
+			end
 		else
-			flash[:error] = "There was an error with your booking!"
-			redirect_to listings_path
+			flash[:error] = "The dates you chose are overlapped"
+			redirect_back(fallback_location: listings_path)
+		end
+	end
+
+	def destroy
+		@booking = Booking.find(params[:id])
+		if @booking.destroy
+			flash[:success] = "Congrats, your booking has been destroyed."
+			redirect_to user_path
+		else
+			flash[:error] = "There was a problem in deleting your bookings."
+			redirect_back(fallback_location: root_path)
 		end
 	end
 

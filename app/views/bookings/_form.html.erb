@@ -8,6 +8,11 @@
 	<%= form.text_field :date_end, id: 'end_date', class: 'input-sm form-control'%>
 </div>
 </div>
+<br>
+<div class="text-field">
+	<%= form.number_field :number_of_guests, id: 'guests_no', class: 'input-sm form-control'%>
+</div>
+<br>
 	<%= hidden_field_tag :listing_id, @listing.id %>
 
 <!-- <input type="text" class="input-sm form-control" name="start" id="start_date"/>
