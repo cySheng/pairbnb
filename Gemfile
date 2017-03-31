@@ -31,6 +31,8 @@ gem 'faker'
 gem 'carrierwave', '~> 1.0'
 gem "mini_magick"
 gem 'braintree'
+gem "letter_opener", :group => :development
+gem 'sidekiq'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

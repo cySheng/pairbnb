@@ -3,7 +3,12 @@ class Booking < ApplicationRecord
 	belongs_to :listing
 
 	def overlap?(x,y) #x is listing , y is booking
-		(x.date_start - y.date_end) * (y.date_start - x.date_end) > 0
+		byebug
+		if (Date.parse(x.date_start) - Date.parse(y.date_end)) * (Date.parse(y.date_start) - Date.parse(x.date_end)) > 0
+			return true
+		else
+			return false
+		end
 		# if y.date_start < x.date_start
 		# 	flash[:error1] = "The place is not yet available at this date yet."
 		# 	return true
@@ -12,13 +17,13 @@ class Booking < ApplicationRecord
 		# 	return true
 	end
 
-	@booking.overlap?
-
 
 	def check_overlapping_dates
 		self.listing.bookings.each do |x| 
-			overlap?(self, x)
+			if overlap?(self, x)
+				return false
+			end
 		end
-		return false
+		return true
 	end
 end
