@@ -35,6 +35,7 @@ gem "letter_opener", :group => :development
 gem 'sidekiq'
 gem 'rails_12factor'
 gem 'unicorn'
+gem "skylight"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
