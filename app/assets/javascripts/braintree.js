@@ -2,13 +2,15 @@
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
+
 var form = document.querySelector('#cardForm');
 var submit = document.querySelector("#submit-payment-btn");
-var authorization = '<%= @client_token %>'
+var authorization = $(".").data("token");
+console.log($(".").data("token"));
 
 braintree.client.create({
   // Replace this with your own authorization.
-  authorization
+  authorization: authorization
 }, function (clientErr, clientInstance) {
   if (clientErr) {
     // Handle error in client creation
