@@ -16,4 +16,5 @@ class Listing < ApplicationRecord
 	def self.look(location, start_date, end_date, pax)
 		where("state LIKE ? OR country LIKE ? OR city LIKE ? AND date_start >= ? AND date_end <= ? AND number_of_guests >= ?", "%#{location.capitalize}%", "%#{location.capitalize}%","%#{location.capitalize}%","#{start_date}", "#{end_date}", "#{pax}")
 	end
+
 end

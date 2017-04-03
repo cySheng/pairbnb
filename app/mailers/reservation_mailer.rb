@@ -3,6 +3,7 @@ class ReservationMailer < ApplicationMailer
 		@user = customer
 		@host = host
 		@reservation_id = reservation_id
-		mail(to: @host.email, subject: "Your place was booked.")
+		@url = "localhost:3000/users/#{@host.id}"
+		mail(to: "cyusheng93@gmail.com", subject: "Your place was booked.")
 	end
 end

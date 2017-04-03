@@ -2,10 +2,10 @@ class BookingsController < ApplicationController
 	def create
 		@booking = current_user.bookings.new(booking_params)
 		@booking.listing_id = params[:listing_id]
-		byebug
 		if @booking.check_overlapping_dates
 			if @booking.save
-				ReservationMailer.booking_email(current_user, User.find(Listing.find(@booking.listing_id).user_id), @booking.listing_id).deliver
+				ReservationJob.perform_now(current_user, User.find(Listing.find(@booking.listing_id).user_id), @booking.listing_id)
+				# ReservationMailer.booking_email(current_user, User.find(@booking.host_id) , @booking.listing_id).deliver_now
 				flash[:notice] = "Your bookings have been saved!"
 				redirect_to user_path(current_user)
 			else

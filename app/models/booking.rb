@@ -3,8 +3,7 @@ class Booking < ApplicationRecord
 	belongs_to :listing
 
 	def overlap?(x,y) #x is listing , y is booking
-		byebug
-		if (Date.parse(x.date_start) - Date.parse(y.date_end)) * (Date.parse(y.date_start) - Date.parse(x.date_end)) > 0
+		if (Date.strptime(x.date_start, '%m/%d/%Y') - Date.strptime(y.date_end, '%m/%d/%Y')) * (Date.strptime(y.date_start, '%m/%d/%Y') - Date.strptime(x.date_end, '%m/%d/%Y')) > 0
 			return true
 		else
 			return false
@@ -17,6 +16,10 @@ class Booking < ApplicationRecord
 		# 	return true
 	end
 
+	def check_pax 
+
+	end
+
 
 	def check_overlapping_dates
 		self.listing.bookings.each do |x| 
@@ -25,5 +28,9 @@ class Booking < ApplicationRecord
 			end
 		end
 		return true
+	end
+
+	def host_id
+		return self.listing.user_id
 	end
 end
