@@ -5,6 +5,13 @@
 
 <div class="row">
 
+<%= form_tag(listings_path, :method => "get", id: "search-form", class: "navbar-form") do %>
+            <div class="form-group">
+              <%= text_field_tag :search, params[:search], placeholder: "Search Listings", class: "form-control" %>
+            </div>
+              <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
+<% end %>
+
 <% @listings.each.with_index do |x, y| %>
 	<div class="col-md-1"></div>
 	<div class="col-md-3">
@@ -21,10 +28,10 @@
 </div>
 
 
-<% if Listing.all[0] != @listings[0] %>
+<% if Listing.all[0] != @listings[0] && @listings.count > 10 %>
 	<%= button_to ("Previous"), listings_path, params: {'@number' => (@number.to_i - 10)}, method: :get %>
 <% end %>
 
-<% if Listing.last != @listings.last %>
+<% if Listing.last != @listings.last && @listings.count > 10 %>
 	<%= button_to ("Next"), listings_path, params: {'@number' => (@number.to_i + 10)}, method: :get %>
 <% end %>

@@ -21,13 +21,13 @@ class ListingsController < ApplicationController
   		@listings = Listing.order(:id).limit(10).offset(@number)
   	end
 
-	  if params[:search]
-	    @listings = Listing.search(params[:search]).order("created_at DESC")
-	  end
+  	filtering_params(params).each do |key, value|
+  		@listings = @listings.public_send(key, value) if value.present?
+  	end
 
-	  if params[:location]
-	  	@listings = Listing.look(params[:location],params[:start_date],params[:end_date],params[:pax]).order("created_at DESC")
-	  end
+	  # if params[:search]
+	  #   @listings = Listing.search(params[:search]).order("created_at DESC")
+	  # end
 	end
 
 	def create
@@ -99,5 +99,9 @@ class ListingsController < ApplicationController
 	private
 	def listing_params
 		params.require(:listing).permit({photos: []},:verification, :tag_list, :name, :description, :house_rules, :number_of_beds, :number_of_guests, :number_of_bedrooms, :number_of_bathrooms, :street, :city, :country, :price, :state, :date_start, :date_end, :category_list)
+	end
+
+	def filtering_params(params)
+		params.slice(:search)
 	end
 end
