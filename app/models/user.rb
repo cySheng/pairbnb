@@ -1,4 +1,4 @@
-class User < ApplicationRecord
+pclass User < ApplicationRecord
   include Clearance::User
   validates :email, uniqueness: true, presence: true
   validates :phone_number, presence: true, on: :update

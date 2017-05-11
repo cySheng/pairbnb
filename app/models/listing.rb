@@ -2,9 +2,12 @@ class Listing < ApplicationRecord
 	validates :name, presence: true
 	mount_uploaders :photos, AvatarUploader
 
-	scope :search, -> (search) {where("name LIKE ? OR description LIKE ? OR city LIKE ?", "%#{search.capitalize}%", "%#{search.capitalize}%", "%#{search.capitalize}%")}
-
-	
+	scope :search, -> (search) {where("name LIKE ? OR description LIKE ? OR city LIKE ? OR country LIKE ?", "%#{search.capitalize}%", "%#{search.capitalize}%", "%#{search.capitalize}%", "%#{search.capitalize}%")}
+	scope :location, -> (location) {where("street LIKE ? OR city LIKE ? OR state LIKE ? OR country LIKE ?", "%#{location.capitalize}%", "%#{location.capitalize}%", "%#{location.capitalize}%", "%#{location.capitalize}%")}
+	scope :check_in, -> (check_in) {where("date_start >= ?", "#{check_in}")}
+	scope :check_out, -> (check_out) {where("date_end <= ?", "#{check_out}")}
+	scope :guests_no, -> (guests_no) {where("number_of_guests >= ?", "#{guests_no}")}
+ 
 	belongs_to :user
 	has_many :bookings
 	has_many :reviews

@@ -1,6 +1,4 @@
-<div class="row">
-	<div class="col-md-1"></div>
-</div>
+
 <div class="row">
 	<div class="col-md-2">
 	</div>
@@ -8,39 +6,18 @@
 		<h1>Where to? <small> Start your next<br> adventure on Airbnb.</small></h1>
 	</div>
 </div>
-<!-- <div class="row">
-	<div class="col-md-2">
-	</div>
-	<div class="col-md-1">
-		Location
-	</div>
-	<div class="col-md-1">
-		Start Date
-	</div>
-	<div class="col-md-1">
-		End Date
-	</div>
-</div> -->
 <div class="row">
 	<div class="col-md-2">
 	</div>
 	<div class="col-md-8">
-		<form class="form-inline">
-		<%= form_tag(listings_path, :method => "get", id: "search-form") do %>
-			<div class="form-group">
-				<%= text_field_tag :location, params[:location], placeholder: "Search Location", class: "form-control" %>
-			</div>
-			<div class="form-group">
-				<%= date_field_tag :start_date, params[:start_date], placeholder: "Start Date", class: "form-control" %>
-			</div>
-			<div class="form-group">
-				<%= date_field_tag :end_date, params[:end_date], placeholder: "End Date", class: "form-control" %>
-			</div>
-			<div class="form-group">
-				<%= number_field_tag :pax, params[:pax], placeholder: "No. of People", class: "form-control" %>
-			</div>
-				<%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
-		<% end %>
-		</form>
-	</div>
+		<%= form_tag(listings_path, :method => "get", id: "listing-form", class: "navbar-form") do %>
+	    <div class="form-group">
+	      <%= text_field_tag :location, params[:location], placeholder: "Destination, city, address", class: "form-control" %>
+				<%= date_field_tag :check_in, params[:check_in], placeholder: "Check In", class: "form-control" %>
+				<%= date_field_tag :check_out, params[:check_out], placeholder: "Check Out", class: "form-control" %>
+				<%= number_field_tag :guests_no, params[:guests_no], placeholder: "Guests", class: "form-control" %>
+	    </div>
+      <%= submit_tag "Search", :name => "listing-form", class: "btn btn-default" %>
+	  <% end %>
+	 </div>
 </div>

@@ -25,6 +25,10 @@ class ListingsController < ApplicationController
   		@listings = @listings.public_send(key, value) if value.present?
   	end
 
+  	specific_params(params).each do |key, value|
+  		@listings = @listings.public_send(key, value) if value.present?
+  	end
+
 	  # if params[:search]
 	  #   @listings = Listing.search(params[:search]).order("created_at DESC")
 	  # end
@@ -103,5 +107,9 @@ class ListingsController < ApplicationController
 
 	def filtering_params(params)
 		params.slice(:search)
+	end
+
+	def specific_params(params)
+		params.slice(:location, :check_in, :check_out, :guests_no)
 	end
 end
