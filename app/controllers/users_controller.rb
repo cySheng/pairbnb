@@ -1,6 +1,6 @@
 class UsersController < Clearance::UsersController
 
-	
+
 	# def user_from_params
 	# 	@user = 
 	# 		if params[:user]
@@ -18,16 +18,12 @@ class UsersController < Clearance::UsersController
 		@user = User.new(user_params)
 		respond_to do |format|
 			if @user.save
-				format.html {
-					flash[:notice] = "You successfully signed up!"
-					sign_in(@user)
-					redirect to "/"
-				}
+				flash[:notice] = "You successfully signed up!"
+				sign_in(@user)
+				format.html { redirect_to root_path }
 			else
-				format.html {
-					flash[:error] = "There was an error signing you up!"
-					redirect_to sign_up_path
-				}
+				flash[:error] = "There was an error signing you up!"
+				format.html { redirect_to sign_up_path }
 				format.js
 			end
 		end
