@@ -1,12 +1,14 @@
 class UsersController < Clearance::UsersController
-	def user_from_params
-		@user = 
-			if params[:user]
-				User.new(user_params)
-			else
-				User.new
-			end
-	end
+
+	
+	# def user_from_params
+	# 	@user = 
+	# 		if params[:user]
+	# 			User.new(user_params)
+	# 		else
+	# 			User.new
+	# 		end
+	# end
 
 	def edit
 		@user = User.find(current_user.id)
