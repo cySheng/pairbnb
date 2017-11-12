@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+  <script src="https://use.fontawesome.com/7cb98041d7.js"></script>
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   
@@ -15,33 +17,46 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-  <nav class="navbar navbar-default navbar-static-top">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <%= link_to ("Airbnb"), root_path, class: "navbar-brand" %>
+  
+  <nav class="main_navbar">
+    <div class="brand">
+      <%= link_to ("Airbnb"), root_path, class: "navbar-brand" %>
+    </div>
+    <% if signed_in? -%>
+      <div class="search_bar">
+        <%= form_tag(listings_path, :method => "get", id: "search-form") do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search Listings" %>
+          <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
+        <% end %>
+      </div>
+      <div class="menu_bar">
+        <i class="fa fa-bars fa-2x" aria-hidden="true">
+          <div class="dropdown">
+            <li >
+              <%= link_to ("My Profile"), user_path(current_user)%>
+            </li>
+            <li >
+              <%= link_to ("Listings"), listings_path%>
+            </li>
+            <li >
+              <%= button_to ("Sign Out"), sign_out_path, method: :delete%>
+            </li>
+            <li>
+              <%= link_to ("Create Listing"), new_listing_path%> 
+            </li>
+          </div>
+        </i>
       </div>
 
-      <% if signed_in? -%>
-          <%= button_to ("Sign Out"), sign_out_path, method: :delete , class: "navbar-form navbar-right btn btn-default"%>
-          <%= link_to ("Create Listing"), new_listing_path, class: "navbar-text navbar-right navbar-form" %> 
-          <%= image_tag(current_user.avatar.thumb.url, class: "navbar-form navbar-right", class: "navbar-form navbar-right navbar-text profilepic") if current_user.avatar?%>
-         
-          <%= link_to ("My Profile"), user_path(current_user), class: "navbar-text navbar-right navbar-form" %>
-          <%= link_to ("Listings"), listings_path, class: "navbar-text navbar-right navbar-form" %>
-
-          <%= form_tag(listings_path, :method => "get", id: "search-form", class: "navbar-form") do %>
-            <div class="form-group">
-              <%= text_field_tag :search, params[:search], placeholder: "Search Listings", class: "form-control" %>
-            </div>
-              <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
-          <% end %>
-        <% else %>
-          <%= link_to t(".sign_in"), sign_in_path %>
-            <%= link_to "Facebook Login", "/auth/facebook" %>      
-        <% end %>
-    </div>
+          <%#= image_tag(current_user.avatar.thumb.url)%>
+    <% else %>
+      <div>
+        <%= link_to t(".sign_in"), sign_in_path %>
+        <%= link_to "Facebook Login", "/auth/facebook" %>      
+      </div>
+    <% end %>
   </nav>
-  
+
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-4"></div>
