@@ -19,6 +19,9 @@
 <body>
   
   <nav class="main_navbar">
+    <div class="dropdownBackground">
+      <span class="arrow"></span>
+    </div>
     <div class="brand">
       <%= link_to ("Airbnb"), root_path, class: "navbar-brand" %>
     </div>
@@ -26,27 +29,29 @@
       <div class="search_bar">
         <%= form_tag(listings_path, :method => "get", id: "search-form") do %>
           <%= text_field_tag :search, params[:search], placeholder: "Search Listings" %>
-          <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
+          <%#= submit_tag "Search", :name => nil %>
         <% end %>
       </div>
-      <div class="menu_bar">
-        <i class="fa fa-bars fa-2x" aria-hidden="true">
-          <div class="dropdown">
-            <li >
+      <ul class="menu_bar">
+        <li>
+          <i class="fa fa-bars fa-2x" aria-hidden="true" id="menu_icon">
+          </i>
+          <ul class="dropdown">
+            <li>
               <%= link_to ("My Profile"), user_path(current_user)%>
             </li>
-            <li >
+            <li>
               <%= link_to ("Listings"), listings_path%>
-            </li>
-            <li >
-              <%= button_to ("Sign Out"), sign_out_path, method: :delete%>
             </li>
             <li>
               <%= link_to ("Create Listing"), new_listing_path%> 
             </li>
-          </div>
-        </i>
-      </div>
+            <li>
+              <%= link_to ("Sign Out"), sign_out_path, method: :delete%>
+            </li>
+          </ul>
+        </li>
+      </ul>
 
           <%#= image_tag(current_user.avatar.thumb.url)%>
     <% else %>

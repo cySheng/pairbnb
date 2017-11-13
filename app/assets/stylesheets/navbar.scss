@@ -1,31 +1,118 @@
 nav.main_navbar {
   display: flex;
-  margin: 10px 20px 0px 20px;
+  margin: 5px 10px 50px 10px;
 }
 
 nav.main_navbar div.brand {
-  flex: auto;
+  flex: 0 0 20em;
 }
 
 nav.main_navbar div.search_bar {
-  flex: 3 1 auto;
+  flex: 0 1 auto;
 }
 
 nav.main_navbar div.menu_bar {
-  flex: auto;
+  flex:0 1 auto ;
+}
+
+nav.main_navbar div:nth-child(3) {
+  margin-right: auto;
+}
+
+nav.main_navbar ul.menu_bar li{
+  // flex: auto;
   display: flex;
   justify-content: flex-end;
 }
 
-div.dropdown {
+ul.dropdown {
   opacity: 0;
-  // position: absolute;
-  // overflow: hidden;
-  // padding:20px;
-  // top:-20px;
+  position: absolute;
+  overflow: hidden;
+  padding: 15px;
+  // top: 40px;
+  right: 0.4em;
   border-radius:2px;
   transition: all 0.5s;
-  // transform: translateY(100px);
+  transform: translateY(35px);
   // will-change: opacity;
   display: none;
 }
+
+ul.dropdown li {
+  list-style: none;
+  padding: 10px;
+}
+
+// ul.dropdown li a:link {
+//   color: black;
+// }
+
+
+
+div.brand, div.search_bar, i#menu_icon {
+  padding: 10px;
+}
+
+a {
+  color: black;
+}
+
+.trigger-enter .dropdown {
+  display: block;
+}
+
+.trigger-enter-active .dropdown {
+  opacity: 1;
+}
+
+.dropdownBackground {
+  width:100px;
+  height:100px;
+  position: absolute;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 50px 100px rgba(50,50,93,.1), 0 15px 35px rgba(50,50,93,.15), 0 5px 15px rgba(0,0,0,.1);
+  transition:all 0.3s, opacity 0.1s, transform 0.2s;
+  transform-origin: 50% 0;
+  display: flex;
+  justify-content: center;
+  opacity:0;
+}
+
+.dropdownBackground.open {
+  opacity: 1;
+}
+
+.arrow {
+  position: absolute;
+  width:20px;
+  height:20px;
+  display: block;
+  background:white;
+  transform: translateY(-50%) translateX(150%) rotate(45deg);
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 5px 20px;
+  margin: 0px;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+input[type=text]:focus {
+    // border: 3px  solid #555;
+  outline: none;
+  border: 3px solid #555;
+  // border-radius: 8px;
+}
+
+body {
+  background-image: url("vietnam.jpg");
+  background-size: 110%;
+  background-repeat: no-repeat;
+}
+
+
+
