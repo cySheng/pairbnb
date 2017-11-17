@@ -5,3 +5,26 @@
 @import "users";
 @import "welcome";
 @import "navbar";
+@import "landing";
+
+body {
+  background: linear-gradient(
+      rgba(97, 97, 97, 0.45), 
+      rgba(97, 97, 97, 0.45)
+    ),url("hills.jpg"); 
+  // background-image: url("hills.jpg");
+  // background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+html, body {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+div.container-fluid {
+  height: calc(100% - 141px);
+}

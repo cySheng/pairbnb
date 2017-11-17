@@ -1,3 +1,37 @@
 // Place all the styles related to the Listings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.form-background {
+  // border: 1px solid #ccc;
+  // border-radius: 16px;
+  // background-color:rgba(192,192,192,0.7);
+  // padding: 30px;
+  margin-bottom: 80px;
+}
+
+.form-header, .form-sub-header, .main-form {
+  // border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.form-header {
+  padding: 15px;
+  background-color:rgba(80, 208, 125, 0.8);
+  text-align: center;
+}
+
+.form-sub-header {
+  padding: 10px;
+  background-color: rgba(208, 37, 82, 0.8);
+}
+
+.main-form {
+  padding: 15px;
+  background-color: rgba(178, 206, 207, 0.8);
+}
+
+.special-button {
+  margin-top: 20px;
+}

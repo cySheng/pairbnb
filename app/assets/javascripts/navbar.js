@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on('turbolinks:load',function(){
   //The box for the menu to click on
   const menuDiv = document.querySelector(".menu_bar");
   

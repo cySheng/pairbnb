@@ -6,10 +6,10 @@
 <div class="row">
 
 <%= form_tag(listings_path, :method => "get", id: "search-form", class: "navbar-form") do %>
-            <div class="form-group">
-              <%= text_field_tag :search, params[:search], placeholder: "Search Listings", class: "form-control" %>
-            </div>
-              <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
+  <div class="form-group">
+    <%= text_field_tag :search, params[:search], placeholder: "Search Listings", class: "form-control" %>
+  </div>
+    <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
 <% end %>
 
 <% @listings.each.with_index do |x, y| %>

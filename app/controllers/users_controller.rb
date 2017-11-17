@@ -15,6 +15,7 @@ class UsersController < Clearance::UsersController
 	end
 
 	def create
+		byebug
 		@user = User.new(user_params)
 		respond_to do |format|
 			if @user.save

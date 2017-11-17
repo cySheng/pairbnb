@@ -1,10 +1,15 @@
 nav.main_navbar {
   display: flex;
-  margin: 5px 10px 50px 10px;
+
+  margin: 5px 15px 0px 15px;
 }
 
 nav.main_navbar div.brand {
   flex: 0 0 20em;
+}
+
+nav.main_navbar div.brand a {
+  color: white;
 }
 
 nav.main_navbar div.search_bar {
@@ -93,26 +98,42 @@ a {
   transform: translateY(-50%) translateX(150%) rotate(45deg);
 }
 
-input[type=text] {
-  width: 100%;
-  padding: 5px 20px;
-  margin: 0px;
-  box-sizing: border-box;
-  border-radius: 8px;
+form#search-form {
+  border-style: solid;
+  border-width: 0px 0px 2px 0px;
+  border-bottom-color: white;
 }
 
-input[type=text]:focus {
-    // border: 3px  solid #555;
+form#search-form input[type=text] {
   outline: none;
-  border: 3px solid #555;
-  // border-radius: 8px;
+  border: none;
+  background-color: rgba(0,0,0,0);
+  padding: -8px;
+  color: white;
 }
 
-body {
-  background-image: url("vietnam.jpg");
-  background-size: 110%;
-  background-repeat: no-repeat;
+
+
+form#search-form input[type=text]::placeholder {
+  color: white;
 }
+
+// input[type=text] {
+//   width: 100%;
+//   padding: 5px 20px;
+//   margin: 0px;
+//   box-sizing: border-box;
+//   border-radius: 8px;
+// }
+
+// input[type=text]:focus {
+//     // border: 3px  solid #555;
+//   outline: none;
+//   border: 3px solid #555;
+//   // border-radius: 8px;
+// }
+
+
 
 
 
