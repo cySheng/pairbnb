@@ -18,7 +18,7 @@
   color: white;
 }
 
-.landing-page input.form-input {
+.form-box input.form-input {
   outline: none;
   margin: 20px 0px;
   border: none;
@@ -31,12 +31,12 @@
   color: white;
 }
 
-.landing-page input[type=text]::placeholder, .landing-page input[type=number]::placeholder{
+.form-box input::placeholder{
   color: white;
   font-weight: 100px;
 }
 
-.landing-page .submit-button {
+.form-box .submit-button {
   margin: 15px 0px;
   color: white;
   background-color: rgba(112, 23, 151, 0.84);
