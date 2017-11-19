@@ -1,6 +1,6 @@
 <%= form_for :session, url: session_path, html: {class: "d-flex flex-column"} do |form| %>
   <%= form.text_field :email, type: 'email', class: "form-input", placeholder: "Email" %>
-  <%= form.password_field :password, class: "form-input", placeholder: "Password" %>
+    <%= form.password_field :password, class: "form-input", placeholder: "Password" %>
   <div class="d-flex justify-content-center">
     <%= form.submit "Sign In", class: "submit-button" %>
   </div>
@@ -11,3 +11,7 @@
     <%#= link_to t(".forgot_password"), new_password_path %>
   <!-- </div> -->
 <% end %>
+
+<div class="d-flex justify-content-center">
+  <%= link_to "Login With Facebook", "/auth/facebook", class: "facebook-button" %>    
+</div>

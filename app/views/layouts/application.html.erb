@@ -19,9 +19,9 @@
 <body>
   
   <nav class="main_navbar">
-    <div class="dropdownBackground">
+    <!-- <div class="dropdownBackground">
       <span class="arrow"></span>
-    </div>
+    </div> -->
     <div class="brand">
       <%= link_to ("Airbnb"), root_path, class: "navbar-brand" %>
     </div>
@@ -55,9 +55,9 @@
 
           <%#= image_tag(current_user.avatar.thumb.url)%>
     <% else %>
-      <div>
-        <%= link_to t(".sign_in"), sign_in_path %>
-        <%= link_to "Facebook Login", "/auth/facebook" %>      
+      <div class="non-user-signup-nav d-flex justify-content-end">
+        <%= link_to t(".sign_up"), sign_up_path, class: "" %>
+        <%#= link_to t(".sign_in"), sign_in_path, class: "align-middle" %>
       </div>
     <% end %>
   </nav>

@@ -1,6 +1,5 @@
 nav.main_navbar {
   display: flex;
-
   margin: 5px 15px 0px 15px;
 }
 
@@ -10,6 +9,10 @@ nav.main_navbar div.brand {
 
 nav.main_navbar div.brand a {
   color: white;
+}
+
+nav.main_navbar div.brand a:hover {
+  text-decoration: underline;
 }
 
 nav.main_navbar div.search_bar {
@@ -115,6 +118,17 @@ form#search-form input[type=text] {
 
 
 form#search-form input[type=text]::placeholder {
+  color: white;
+}
+
+
+
+nav div.non-user-signup-nav {
+  flex: 1 0 auto;
+  margin: auto 0;
+}
+
+nav div.non-user-signup-nav a {
   color: white;
 }
 
