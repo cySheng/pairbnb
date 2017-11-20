@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :last_name, presence: true, on: :update
   validates :first_name, presence: true, on: :update
   validates :gender, presence: true, on: :update
-  validates :password, presence: true,on: create
+  validates :password, presence: true, on: :create
   mount_uploader :avatar, AvatarUploader
 
   has_many :authentications, :dependent => :destroy

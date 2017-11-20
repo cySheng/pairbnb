@@ -1,12 +1,26 @@
-<div id="clearance" class="create-listing">
-  <h2><%= t(".title") %></h2>
 
-  <%= form_for @listing, remote: true,  authenticity_token: true  do |form| %>
-    <%= render partial: '/listings/form', object: form %>
-
-    <div class="submit-field">
-      <%= form.submit %>
+<div class="row">
+  <div class="col-md-6 offset-md-3 form-background">
+    <div class="form-header">
+      <h1>Become A Host</h1>
+      <h3><i>List your place</i></h3>
     </div>
+  <!--   <div class="form-sub-header">
+      
+    </div> -->
+    
+    <%= form_for @listing, remote: true,  authenticity_token: true do |form| %>
+      <%= render partial: '/listings/form', object: form %>
+      
+      <!-- <div class="main-form"> -->
+        <div class="form-row d-flex justify-content-center">
+          <div class="form-group special-button">
+            <%= form.submit "Create Listing", class: "btn btn-primary"%>
+          </div>
+        </div>
+      <!-- </div> -->
 
-  <% end %>
+
+    <% end %>
+    </div>
 </div>

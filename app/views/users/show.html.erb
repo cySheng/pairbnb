@@ -1,28 +1,36 @@
-<h2><%= current_user.last_name%>'s Profile</h2>
-<%= link_to t(".edit_profile"), edit_user_path %> <br>
+<div class="row profile-page">
+	<div class="col-md-8 offset-md-2 d-flex flex-column justify-content-center">
+		<div class="d-flex">
+			<%= image_tag(display_profile_image, class: "profile-picture") %>
+			<div>
+				<h2 class="text-center"><%= current_user.last_name %>'s Profile</h2>
+			</div>
+		</div>
 
-<%= image_tag(current_user.avatar_url) if current_user.avatar? %>
+		<div>
+			<h4>My Listings</h4>
+			<% current_user.listings.each do |x| %>
+				<%= link_to (x.name), edit_listing_path(x) %>
+			<% end %>
+		</div>
 
-
-<h4> My Listings</h4>
-<% current_user.listings.each do |x| %>
-	<%= link_to (x.name), edit_listing_path(x) %>
-<% end %>
-
-
-<h4> My Reservations</h4>
-<table class="table table-striped">
-	<tr class="success">
-		<th> Date Start </th>
-		<th> Date End </th>
-		<th> Listing ID </th>
-	</tr>
-	<% current_user.bookings.each do |x| %>
-	<tr>
-		<td><%= x.date_start %> </td>
-		<td><%= x.date_end %> </td>
-	 	<td><%= x.listing_id %> </td>
-	 	<td><%= button_to "Delete Booking", booking_path(x.id), method: :delete, class: "btn btn-default", data: {confirm: "Are you sure?"} %></td>
-	</tr>
-	<% end %>
-</table>
+		<div>
+			<h4> My Reservations</h4>
+			<table class="table table-striped">
+				<tr class="success">
+					<th> Date Start </th>
+					<th> Date End </th>
+					<th> Listing ID </th>
+				</tr>
+				<% current_user.bookings.each do |x| %>
+				<tr>
+					<td><%= x.date_start %> </td>
+					<td><%= x.date_end %> </td>
+				 	<td><%= x.listing_id %> </td>
+				 	<td><%= button_to "Delete Booking", booking_path(x.id), method: :delete, class: "btn btn-default", data: {confirm: "Are you sure?"} %></td>
+				</tr>
+				<% end %>
+			</table>
+		</div>
+	</div>
+</div>

@@ -1,22 +1,17 @@
-<%= simple_form_for :session, url: session_path do |form| %>
-  <div class="text-field">
-    <%= form.label :email %>
-    <%= form.text_field :email, type: 'email' %>
+<%= form_for :session, url: session_path, html: {class: "d-flex flex-column"} do |form| %>
+  <%= form.text_field :email, type: 'email', class: "form-input", placeholder: "Email" %>
+    <%= form.password_field :password, class: "form-input", placeholder: "Password" %>
+  <div class="d-flex justify-content-center">
+    <%= form.submit "Sign In", class: "submit-button" %>
   </div>
-
-  <div class="password-field">
-    <%= form.label :password %>
-    <%= form.password_field :password %>
-  </div>
-
-  <div class="submit-field">
-    <%= form.submit %>
-  </div>
-
-  <div class="other-links">
-    <% if Clearance.configuration.allow_sign_up? %>
-      <%= link_to t(".sign_up"), sign_up_path %>
-    <% end %>
-    <%= link_to t(".forgot_password"), new_password_path %>
-  </div>
+  <!-- <div class="other-links"> -->
+    <%# if Clearance.configuration.allow_sign_up? %>
+      <%#= link_to t(".sign_up"), sign_up_path %>
+    <%# end %>
+    <%#= link_to t(".forgot_password"), new_password_path %>
+  <!-- </div> -->
 <% end %>
+
+<div class="d-flex justify-content-center">
+  <%= link_to "Login With Facebook", "/auth/facebook", class: "facebook-button" %>    
+</div>

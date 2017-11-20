@@ -1,4 +1,6 @@
 class ListingsController < ApplicationController
+	before_action :set_listing, only: [:show, :destroy, :update, :edit]
+
 	def new
 		if current_user.customer?
 			@listing = Listing.new
@@ -51,10 +53,9 @@ class ListingsController < ApplicationController
 	end
 
 	def update 
-		listing = Listing.find(params[:id])
 		if params[:verification] 
 			if allowed?(action: "verify", user: current_user)
-				if listing.update(verification: true)
+				if @listing.update(verification: true)
 					flash[:notice] = "Listing verified"
 				else
 					flash[:error] = "There was an error verifying your property."
@@ -64,7 +65,7 @@ class ListingsController < ApplicationController
 			end
 			redirect_back(fallback_location: root_path)
 		else
-			if listing.update(listing_params)
+			if @listing.update(listing_params)
 				flash[:notice] = "Listing is successfully updated!"
 				redirect_to root_path
 			else
@@ -75,13 +76,11 @@ class ListingsController < ApplicationController
 	end
 
 	def edit
-		@listing = Listing.find(params[:id])
+
 	end
 
 	def destroy 
-		listing = Listing.find(params[:id])
-
-		if listing.destroy
+		if @listing.destroy
 			flash[:notice] = "Listing destroyed"
 			redirect_to root_path
 		else
@@ -91,14 +90,18 @@ class ListingsController < ApplicationController
 	end
 
 	def show
-		@listing = Listing.find(params[:id])
 		@booking = Booking.new
 	end
 
 
 	private
+
 	def listing_params
 		params.require(:listing).permit({photos: []},:verification, :tag_list, :name, :description, :house_rules, :number_of_beds, :number_of_guests, :number_of_bedrooms, :number_of_bathrooms, :street, :city, :country, :price, :state, :date_start, :date_end, :category_list)
+	end
+
+	def set_listing
+		@listing = Listing.find(params[:id])
 	end
 
 	def filtering_params(params)
