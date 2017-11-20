@@ -1,21 +1,15 @@
-<div id="clearance" class="sign-up">
-  <h2><%= t(".title") %></h2>
+<div class="d-flex flex-row justify-content-center align-items-center sign-in-page">
+  <div class="form-box d-flex flex-column">
+    <h1>Get Started Now</h1>
+    <h3 class="text-center">Sign Up!</h3>
 
-  <%= form_for @user, remote: true, authenticity_token: true do |form| %>
-    <%= render partial: '/users/form', object: form %>
+    <%= form_for @user, remote: true, html: { class: "d-flex flex-column"} do |form| %>
+      <%= render partial: '/users/form', object: form %>
+        <div class="d-flex justify-content-center">
+          <%= form.submit "Sign Up", class: "submit-button" %>
+        </div>
+        <%#= link_to t(".sign_in"), sign_in_path %>
 
-  <div class="password-field">
-    <%= form.label :password %>
-    <%= form.text_field :password, type: 'password' %>
+    <% end %>
   </div>
-
-    <div class="submit-field">
-      <%= form.submit %>
-    </div>
-
-    <div class="other-links">
-      <%= link_to t(".sign_in"), sign_in_path %>
-    </div>
-
-  <% end %>
 </div>

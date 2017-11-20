@@ -2,6 +2,10 @@
   height: 100%;
 }
 
+.landing-page {
+  color: white;
+}
+
 .form-box {
   padding: 20px;
   border: 2px solid #ccc;
@@ -10,13 +14,13 @@
   color: white;
 }
 
-.form-box h2 {
+.form-box > h1 h2 h3 {
   color: white;
 }
 
-.landing-page h1 {
-  color: white;
-}
+// .landing-page h1 {
+//   color: white;
+// }
 
 .form-box input.form-input {
   outline: none;

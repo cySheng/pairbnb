@@ -17,59 +17,60 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-  
-  <nav class="main_navbar">
-    <!-- <div class="dropdownBackground">
-      <span class="arrow"></span>
-    </div> -->
-    <div class="brand">
-      <%= link_to ("Airbnb"), root_path, class: "navbar-brand" %>
-    </div>
-    <% if signed_in? -%>
-      <div class="search_bar">
-        <%= form_tag(listings_path, :method => "get" ,id: "search-form") do %>
-          <%= text_field_tag :search, params[:search], placeholder: "Search for a place" %>
-          <%#= submit_tag "Search", :name => nil %>
+  <div class="main_wallpaper">
+    <nav class="main_navbar">
+      <div class="dropdownBackground">
+        <span class="arrow"></span>
+      </div>
+      <div class="brand">
+        <%= link_to ("Airbnb"), root_path, class: "navbar-brand" %>
+      </div>
+      <% if signed_in? -%>
+        <div class="search_bar">
+          <%= form_tag(listings_path, :method => "get" ,id: "search-form") do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search for a place" %>
+            <%#= submit_tag "Search", :name => nil %>
+          <% end %>
+        </div>
+        <ul class="menu_bar">
+          <li>
+            <i class="fa fa-bars fa-2x" aria-hidden="true" id="menu_icon">
+            </i>
+            <ul class="dropdown">
+              <li>
+                <%= link_to ("My Profile"), user_path(current_user)%>
+              </li>
+              <li>
+                <%= link_to ("Listings"), listings_path%>
+              </li>
+              <li>
+                <%= link_to ("Create Listing"), new_listing_path%> 
+              </li>
+              <li>
+                <%= link_to ("Sign Out"), sign_out_path, method: :delete%>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+            <%#= image_tag(current_user.avatar.thumb.url)%>
+      <% else %>
+        <div class="non-user-signup-nav d-flex justify-content-end">
+          <%= link_to t(".sign_in"), sign_in_path, class: "mr-3" %>
+          <%= link_to t(".sign_up"), sign_up_path, class: "" %>
+        </div>
+      <% end %>
+    </nav>
+
+    <div class="container-fluid">
+      <div id="flash">
+        <% flash.each do |key, value| -%>
+          <div id="flash_<%= key %>" class="<%= flash_class(key)%>"><%=h value %></div>
         <% end %>
       </div>
-      <ul class="menu_bar">
-        <li>
-          <i class="fa fa-bars fa-2x" aria-hidden="true" id="menu_icon">
-          </i>
-          <ul class="dropdown">
-            <li>
-              <%= link_to ("My Profile"), user_path(current_user)%>
-            </li>
-            <li>
-              <%= link_to ("Listings"), listings_path%>
-            </li>
-            <li>
-              <%= link_to ("Create Listing"), new_listing_path%> 
-            </li>
-            <li>
-              <%= link_to ("Sign Out"), sign_out_path, method: :delete%>
-            </li>
-          </ul>
-        </li>
-      </ul>
 
-          <%#= image_tag(current_user.avatar.thumb.url)%>
-    <% else %>
-      <div class="non-user-signup-nav d-flex justify-content-end">
-        <%= link_to t(".sign_up"), sign_up_path, class: "" %>
-        <%#= link_to t(".sign_in"), sign_in_path, class: "align-middle" %>
-      </div>
-    <% end %>
-  </nav>
-
-  <div class="container-fluid">
-    <div id="flash">
-      <% flash.each do |key, value| -%>
-        <div id="flash_<%= key %>" class="<%= flash_class(key)%>"><%=h value %></div>
-      <% end %>
+    <%= yield %>
     </div>
-
-  <%= yield %>
   </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
