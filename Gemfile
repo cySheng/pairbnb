@@ -28,7 +28,7 @@ gem 'acts-as-taggable-on', '~> 4.0'
 gem 'simple_form'
 gem 'bootstrap-datepicker-rails'
 gem 'faker'
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 1.3'
 gem "mini_magick"
 gem 'braintree'
 gem "letter_opener", :group => :development
